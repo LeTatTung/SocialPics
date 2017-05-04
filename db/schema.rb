@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20170425081750) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "full_name"
+    t.string   "name"
     t.integer  "sex"
     t.string   "avatar"
     t.boolean  "admin"
