@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20170425081750) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.integer  "sex", default: 0
+    t.integer  "sex",                    default: 0
     t.string   "avatar"
     t.boolean  "admin"
     t.datetime "created_at",                          null: false
