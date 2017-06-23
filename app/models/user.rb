@@ -24,7 +24,6 @@ class User < ApplicationRecord
 
   scope :load_know_users, -> (user_ids){where.not(id: user_ids)
     .order id: :desc}
-
   enum sex: [:male, :female]
 
   mount_uploader :avatar, AvatarUploader
@@ -37,5 +36,11 @@ class User < ApplicationRecord
     user_ids = following.ids
     user_ids.push self.id
     User.load_know_users user_ids
+  end
+
+  def images_news_feed
+    user_ids = following.ids
+    user_ids.push self.id
+    Image.load_share_images user_ids
   end
 end
