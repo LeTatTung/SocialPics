@@ -43,4 +43,12 @@ class User < ApplicationRecord
     user_ids.push self.id
     Image.load_share_images user_ids
   end
+
+  def likes
+    feed_backs.like
+  end
+
+  def liked image
+    likes.find_by image_id: image.id
+  end
 end
