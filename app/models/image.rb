@@ -15,6 +15,6 @@ class Image < ApplicationRecord
   scope :load_image_offset, -> (image_offset){where("id > ?", image_offset)}
 
   def main_comments
-    comments.where parent_id: nil
+    comments.where(parent_id: nil).order id: :asc
   end
 end
