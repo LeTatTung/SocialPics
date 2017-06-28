@@ -21,6 +21,7 @@ class User < ApplicationRecord
   validates_confirmation_of :password, if: :password_required?
   validates_length_of :password, within: Devise.password_length,
     allow_blank: true
+  validates :name, presence: true
 
   scope :load_know_users, -> (user_ids){where.not(id: user_ids)
     .order id: :desc}
@@ -51,5 +52,24 @@ class User < ApplicationRecord
 
   def liked image
     likes.find_by image_id: image.id
+  end
+
+  def current_user? user
+    self == user
+  end
+
+  def update_profile params
+    user_params = params[:user_params]
+    profile_params = params[:profile_params]
+    ActiveRecord::Base.transaction do
+      self.update_attributes user_params
+      profile = self.profile
+      profile.update_attributes(profile_params) if profile_params
+    end
+    errors = profile.errors
+    return errors if errors.any?
+    nil
+    rescue => e
+    return nil
   end
 end

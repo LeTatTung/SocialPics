@@ -7,7 +7,7 @@ class ImagesController < ApplicationController
     unless @images.empty?
       image_size = Settings.load_more_image_size
       image_offset = params[:image_offset] || @images.first.id
-      @images = @images.load_image_offset image_offset
+      @images = @images.load_more_image_offset(image_offset)
         .limit image_size
       @last = @images.size < image_size ? true : false
     end
