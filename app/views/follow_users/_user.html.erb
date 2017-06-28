@@ -9,11 +9,17 @@
       </span>
 
       <div class="follow-users-header-info">
-        <h6><%= link_to user.name, "#" %></h6>
+        <button class="btn btn-primary dropdown-toggle"
+          type="button" data-toggle="dropdown">
+          <%= t "user.name" %>
+        </button>
         <div><b><%= t "user.email" %></b><%= user.email %></div>
         <div><b><%= t "user.sex" %></b><%= user.sex %></div>
         <div><b><%= t "user.image_number" %></b><%= user.images.size %></div>
-        <div><b><%= t "user.following_number" %></b><%= user.profile.followed_number %></div>
+        <div>
+          <b><%= t "user.following_number" %></b>
+          <%= user.profile.followed_number %>
+        </div>
 
         <div class="follow-users-btn">
           <%= link_to t("unfollow"), "#", class: "btn btn-primary" %>
