@@ -1,0 +1,10 @@
+<% @user_support.load_users[:users].each do |user| %>
+  $('.follow-users-content').append('<%= j render "user", user: user %>');
+<% end %>
+<% if @user_support.load_users[:last] %>
+  $('#load-more-follow-users').hide();
+<% else %>
+  $('#load-more-follow-users')
+    .html('<%= link_to t("load_more"), follow_users_path(type: @user_support.load_users[:type],
+    follow_users_offset: @user_support.load_users[:users].last.id - 1), remote: true %>');
+<% end %>
