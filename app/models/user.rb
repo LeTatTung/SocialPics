@@ -24,6 +24,7 @@ class User < ApplicationRecord
 
   scope :load_know_users, -> (user_ids){where.not(id: user_ids)
     .order id: :desc}
+  scope :load_follow_user, -> (follow_offset){where "id < ?", follow_offset}
   enum sex: [:male, :female]
 
   mount_uploader :avatar, AvatarUploader
